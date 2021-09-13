@@ -5,7 +5,7 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
 }   
 button {   
