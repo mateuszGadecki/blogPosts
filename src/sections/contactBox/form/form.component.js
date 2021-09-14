@@ -21,65 +21,31 @@ const Form = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      {errors.name ? (
-        <StyledInput
-          errorInput={true}
-          {...register('name', {
-            required: 'required',
-          })}
-          placeholder="name"
-        />
-      ) : (
-        <StyledInput
-          errorInput={false}
-          {...register('name', {
-            required: 'required',
-          })}
-          placeholder="name"
-        />
-      )}
-      {errors.email ? (
-        <StyledInput
-          errorInput={true}
-          placeholder="email"
-          {...register('email', {
-            required: 'required',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'wrong value',
-            },
-          })}
-        />
-      ) : (
-        <StyledInput
-          errorInput={false}
-          placeholder="email"
-          {...register('email', {
-            required: 'required',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'wrong value',
-            },
-          })}
-        />
-      )}
-      {errors.message ? (
-        <StyledTextArea
-          errorInput={true}
-          placeholder="message"
-          {...register('message', {
-            required: 'required',
-          })}
-        />
-      ) : (
-        <StyledTextArea
-          errorInput={false}
-          placeholder="message"
-          {...register('message', {
-            required: 'required',
-          })}
-        />
-      )}
+      <StyledInput
+        errorInput={errors.name ? true : false}
+        {...register('name', {
+          required: 'required',
+        })}
+        placeholder="name"
+      />
+      <StyledInput
+        errorInput={errors.email ? true : false}
+        placeholder="email"
+        {...register('email', {
+          required: 'required',
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: 'wrong value',
+          },
+        })}
+      />
+      <StyledTextArea
+        errorInput={errors.message ? true : false}
+        placeholder="message"
+        {...register('message', {
+          required: 'required',
+        })}
+      />
       <StyledSubmitButton>Submit</StyledSubmitButton>
     </StyledForm>
   );
