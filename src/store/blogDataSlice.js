@@ -11,20 +11,34 @@ export const getPosts = createAsyncThunk('blogData/getPosts', async () => {
           posts: data,
         }));
     })
-    .then((data) => {
-      const postsList = data.posts.map((el) => {
-        const index = data.users.findIndex(
-          (element) => element.id === el.userId
-        );
+    .then(({ users, posts }) => {
+      return fetch('https://jsonplaceholder.typicode.com/comments')
+        .then((res) => res.json())
+        .then((res) => ({
+          users: users,
+          posts: posts,
+          comments: res,
+        }));
+    })
+    .then(({ posts, users, comments }) => {
+      const postsList = posts.map((el) => {
+        const index = users.findIndex((element) => element.id === el.userId);
         return {
           body: el.body,
           id: el.id,
           title: el.title,
-          user: data.users[index].username,
+          user: users[index].username,
+          comments: [],
         };
       });
+
+      comments.forEach((el) => {
+        const index = posts.findIndex((element) => element.id === el.postId);
+        postsList[index].comments.push(el);
+      });
       return postsList;
-    });
+    })
+    .catch((error) => console.log(error));
 });
 
 const inistialState = {
