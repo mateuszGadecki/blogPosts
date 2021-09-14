@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 
-export const StyledBlogListWrapper = styled.div`
+export const StyledBlogListPageWrapper = styled.div`
   margin: 100px 0 70px 0;
   display: flex;
   justify-content: center;
+`;
+
+export const StyledBlogListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StyledBlogList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
+  padding: 0;
+  margin-top: 40px;
 `;
 
 export const StyledBlogPost = styled.li`

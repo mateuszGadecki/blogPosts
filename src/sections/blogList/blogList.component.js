@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../store/blogDataSlice';
 import { selectPosts } from '../../store/store';
 import { StyledCenter } from '../../utils/styledComponents/center.style';
 import { Loader } from '../../utils/styledComponents/loader.style';
+import Pagination from '../../components/pagination/pagination.component';
 import {
+  StyledBlogListPageWrapper,
   StyledBlogListWrapper,
   StyledBlogList,
   StyledBlogPost,
@@ -15,6 +17,8 @@ import {
 } from './blogList.style';
 
 const BlogList = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
   const dispatch = useDispatch();
   const { postsList, status } = useSelector(selectPosts);
 
@@ -27,8 +31,18 @@ const BlogList = () => {
     return text.length > 100 && `${text.substring(0, 100)}${ending}`;
   };
 
+  const paginationHandler = (countries) => {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = countries.slice(indexOfFirstPost, indexOfLastPost);
+    return currentPosts;
+  };
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   const renderBlogList = () => {
-    return postsList.map((el) => (
+    return paginationHandler(postsList).map((el) => (
       <StyledBlogPost key={el.id}>
         <StyledBlogPostTitle>{el.title}</StyledBlogPostTitle>
         <StyledBlogPostUser>User: {el.user}</StyledBlogPostUser>
@@ -40,13 +54,21 @@ const BlogList = () => {
 
   return (
     <StyledCenter>
-      <StyledBlogListWrapper>
+      <StyledBlogListPageWrapper>
         {status !== 'success' ? (
           <Loader />
         ) : (
-          <StyledBlogList>{renderBlogList()}</StyledBlogList>
+          <StyledBlogListWrapper>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={postsList.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
+            <StyledBlogList>{renderBlogList()}</StyledBlogList>
+          </StyledBlogListWrapper>
         )}
-      </StyledBlogListWrapper>
+      </StyledBlogListPageWrapper>
     </StyledCenter>
   );
 };
