@@ -7,4 +7,6 @@ const store = configureStore({
   },
 });
 
+export const selectPosts = (state) => state.blogData;
+
 export default store;
