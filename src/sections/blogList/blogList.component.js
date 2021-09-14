@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPosts } from '../../store/blogDataSlice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { selectPosts } from '../../store/store';
 import { StyledCenter } from '../../utils/styledComponents/center.style';
 import { Loader } from '../../utils/styledComponents/loader.style';
@@ -19,12 +18,7 @@ import {
 const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  const dispatch = useDispatch();
   const { postsList, status } = useSelector(selectPosts);
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
 
   const truncate = (text) => {
     const ending = '...';
@@ -47,7 +41,9 @@ const BlogList = () => {
         <StyledBlogPostTitle>{el.title}</StyledBlogPostTitle>
         <StyledBlogPostUser>User: {el.user}</StyledBlogPostUser>
         <StyledBlogPostBody>{truncate(el.body)}</StyledBlogPostBody>
-        <StyledBlogPostButton>Read more</StyledBlogPostButton>
+        <StyledBlogPostButton to={`/blog/post/${el.id}`}>
+          Read more
+        </StyledBlogPostButton>
       </StyledBlogPost>
     ));
   };

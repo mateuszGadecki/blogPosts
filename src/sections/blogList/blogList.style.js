@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StyledBlogListPageWrapper = styled.div`
   margin: 100px 0 70px 0;
@@ -58,7 +59,7 @@ export const StyledBlogPostBody = styled.p`
   line-height: 145%;
 `;
 
-export const StyledBlogPostButton = styled.button`
+export const StyledBlogPostButton = styled(Link)`
   cursor: pointer;
   margin: 30px 10px 0 auto;
   width: 150px;
