@@ -11,7 +11,6 @@ import PostPage from './routes/post/post.component';
 const App = () => {
   const dispatch = useDispatch();
   const { postsList } = useSelector(selectPosts);
-
   useEffect(() => {
     !postsList && dispatch(getPosts());
   }, [dispatch, postsList]);

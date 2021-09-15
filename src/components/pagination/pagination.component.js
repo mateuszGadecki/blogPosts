@@ -6,11 +6,11 @@ import {
   StyledPaginationWrapper,
 } from './pagination.style';
 
-const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
   const [activeId, setActiveId] = useState(currentPage);
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 

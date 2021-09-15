@@ -14,6 +14,7 @@ import {
   StyledBlogPostBody,
   StyledBlogPostButton,
 } from './blogList.style';
+import { paginationHandler } from '../../components/pagination/paginationHandler';
 
 const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,18 +26,11 @@ const BlogList = () => {
     return text.length > 100 && `${text.substring(0, 100)}${ending}`;
   };
 
-  const paginationHandler = (countries) => {
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = countries.slice(indexOfFirstPost, indexOfLastPost);
-    return currentPosts;
-  };
-
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   const renderBlogList = () => {
-    return paginationHandler(postsList).map((el) => (
+    return paginationHandler(postsList, currentPage, postsPerPage).map((el) => (
       <StyledBlogPost key={el.id}>
         <StyledBlogPostTitle>{el.title}</StyledBlogPostTitle>
         <StyledBlogPostUser>User: {el.user}</StyledBlogPostUser>
@@ -56,8 +50,8 @@ const BlogList = () => {
         ) : (
           <StyledBlogListWrapper>
             <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={postsList.length}
+              itemsPerPage={postsPerPage}
+              totalItems={postsList.length}
               paginate={paginate}
               currentPage={currentPage}
             />

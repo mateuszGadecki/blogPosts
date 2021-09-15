@@ -1,11 +1,12 @@
 import SEO from '../../components/seo.component';
 import Layout from '../../components/layout/layout.component';
+import PostDetails from '../../sections/postDetails/postDetails.component';
 
-const Post = ({ content: { title } }) => {
+const Post = ({ content }) => {
   return (
     <Layout>
       <SEO title="Blog Post" />
-      <h1>{title}</h1>
+      <PostDetails content={content} />
     </Layout>
   );
 };

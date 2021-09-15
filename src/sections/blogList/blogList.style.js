@@ -28,7 +28,6 @@ export const StyledBlogPost = styled.li`
   padding: 40px;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   transition: transform 0.2s ease-in-out;
   &:hover {
     transform: scale(1.01);
