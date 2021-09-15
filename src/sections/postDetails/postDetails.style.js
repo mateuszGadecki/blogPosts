@@ -1,6 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
-export const StyledPostDetailsWrapper = styled.div``;
+export const StyledPostDetailsWrapper = styled.div`
+  padding-bottom: 100px;
+`;
 
 export const StyledPostDetailsBox = styled.div`
   display: flex;
