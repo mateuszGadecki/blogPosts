@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const StyledPostDetailsWrapper = styled.div``;
 
@@ -43,11 +43,49 @@ export const StyledPostDetailsComments = styled.div`
   align-items: center;
 `;
 
+const nextPage = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(10em, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+`;
+
+const prevPage = keyframes`
+0% {
+    opacity: 0;
+    transform: translate(-10em, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+`;
+
+const handleAnimationType = (animation) => {
+  switch (animation) {
+    case 'prev':
+      return prevPage;
+    case 'next':
+      return nextPage;
+    default:
+      return '';
+  }
+};
+
 export const StyledPostDetailsCommentsList = styled.div`
   display: flex;
   gap: 0 40px;
   margin: 40px 0;
   width: 100%;
+  animation: ${({ animation }) => handleAnimationType(animation)};
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 `;
 
 export const StyledPostDetailsComment = styled.div`

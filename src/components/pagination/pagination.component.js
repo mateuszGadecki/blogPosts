@@ -8,6 +8,7 @@ import {
 
 const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
   const [activeId, setActiveId] = useState(currentPage);
+
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {

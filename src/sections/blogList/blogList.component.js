@@ -19,14 +19,18 @@ import { paginationHandler } from '../../components/pagination/paginationHandler
 const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+  const [animation, setAnimation] = useState(null);
   const { postsList, status } = useSelector(selectPosts);
 
   const truncate = (text) => {
     const ending = '...';
     return text.length > 100 && `${text.substring(0, 100)}${ending}`;
   };
-
   const paginate = (pageNumber) => {
+    currentPage > pageNumber ? setAnimation('prev') : setAnimation('next');
+    setTimeout(() => {
+      setAnimation(null);
+    }, 500);
     setCurrentPage(pageNumber);
   };
   const renderBlogList = () => {
@@ -55,7 +59,10 @@ const BlogList = () => {
               paginate={paginate}
               currentPage={currentPage}
             />
-            <StyledBlogList>{renderBlogList()}</StyledBlogList>
+
+            <StyledBlogList animation={animation}>
+              {renderBlogList()}
+            </StyledBlogList>
           </StyledBlogListWrapper>
         )}
       </StyledBlogListPageWrapper>

@@ -19,6 +19,7 @@ import DividerIcon from '../../images/blog.svg';
 const ContactBox = ({ content: { title, user, body, comments } }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [commentsPerPage] = useState(3);
+  const [animation, setAnimation] = useState(null);
 
   const renderComments = () => {
     return paginationHandler(comments, currentPage, commentsPerPage).map(
@@ -37,6 +38,10 @@ const ContactBox = ({ content: { title, user, body, comments } }) => {
   };
 
   const paginate = (pageNumber) => {
+    currentPage > pageNumber ? setAnimation('prev') : setAnimation('next');
+    setTimeout(() => {
+      setAnimation(null);
+    }, 500);
     setCurrentPage(pageNumber);
   };
 
@@ -55,7 +60,7 @@ const ContactBox = ({ content: { title, user, body, comments } }) => {
         </StyledDivider>
         <StyledPostDetailsComments>
           <StyledPostDetailsTitle>Comments</StyledPostDetailsTitle>
-          <StyledPostDetailsCommentsList>
+          <StyledPostDetailsCommentsList animation={animation}>
             {renderComments()}
           </StyledPostDetailsCommentsList>
         </StyledPostDetailsComments>

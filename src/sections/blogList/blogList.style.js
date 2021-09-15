@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledBlogListPageWrapper = styled.div`
@@ -12,12 +12,50 @@ export const StyledBlogListWrapper = styled.div`
   flex-direction: column;
 `;
 
+const nextPage = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(400px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+`;
+
+const prevPage = keyframes`
+0% {
+    opacity: 0;
+    transform: translate(-400px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+`;
+
+const handleAnimationType = (animation) => {
+  switch (animation) {
+    case 'prev':
+      return prevPage;
+    case 'next':
+      return nextPage;
+    default:
+      return '';
+  }
+};
+
 export const StyledBlogList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 0;
   margin-top: 40px;
+  animation: ${({ animation }) => handleAnimationType(animation)};
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 `;
 
 export const StyledBlogPost = styled.li`

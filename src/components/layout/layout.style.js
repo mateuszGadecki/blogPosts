@@ -7,6 +7,7 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     position: relative;
+    overflow-x: hidden;
 }   
 button {   
   &:focus {
