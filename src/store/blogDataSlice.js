@@ -44,12 +44,17 @@ export const getPosts = createAsyncThunk('blogData/getPosts', async () => {
 const inistialState = {
   postsList: null,
   status: null,
+  currentPage: 1,
 };
 
 const blogDataSlice = createSlice({
   name: 'blogData',
   initialState: inistialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage(state, { payload }) {
+      state.currentPage = payload;
+    },
+  },
   extraReducers: {
     [getPosts.pending]: (state) => {
       state.status = 'loading';
@@ -63,5 +68,7 @@ const blogDataSlice = createSlice({
     },
   },
 });
+
+export const { setCurrentPage } = blogDataSlice.actions;
 
 export default blogDataSlice.reducer;

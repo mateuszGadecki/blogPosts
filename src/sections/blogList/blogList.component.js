@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentPage } from '../../store/blogDataSlice';
 import { selectPosts } from '../../store/store';
 import { StyledCenter } from '../../utils/styledComponents/center.style';
 import { Loader } from '../../utils/styledComponents/loader.style';
@@ -17,10 +18,10 @@ import {
 import { paginationHandler } from '../../components/pagination/paginationHandler';
 
 const BlogList = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
   const [postsPerPage] = useState(10);
   const [animation, setAnimation] = useState(null);
-  const { postsList, status } = useSelector(selectPosts);
+  const { postsList, status, currentPage } = useSelector(selectPosts);
 
   const truncate = (text) => {
     const ending = '...';
@@ -31,7 +32,7 @@ const BlogList = () => {
     setTimeout(() => {
       setAnimation(null);
     }, 500);
-    setCurrentPage(pageNumber);
+    dispatch(setCurrentPage(pageNumber));
   };
   const renderBlogList = () => {
     return paginationHandler(postsList, currentPage, postsPerPage).map((el) => (
