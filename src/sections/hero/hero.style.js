@@ -6,6 +6,11 @@ export const StyledHeroWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  @media only screen and (max-width: 1160px) {
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    height: 1400px;
+  }
 `;
 
 export const StyledHeroBox1 = styled.div`
@@ -26,6 +31,10 @@ export const StyledHeroBox1 = styled.div`
       color: ${({ theme }) => theme.colors.black};
     }
   }
+  @media only screen and (max-width: 1160px) {
+    height: 350px;
+    flex-basis: 100%;
+  }
 `;
 
 export const StyledHeroBox2 = styled.div`
@@ -45,6 +54,10 @@ export const StyledHeroBox2 = styled.div`
       transform: scale(1.08);
     }
   }
+  @media only screen and (max-width: 1160px) {
+    height: 350px;
+    flex-basis: 100%;
+  }
 `;
 
 export const StyledHeroBox3 = styled.div`
@@ -62,6 +75,10 @@ export const StyledHeroBox3 = styled.div`
       opacity: 1;
       transform: scale(1.15);
     }
+  }
+  @media only screen and (max-width: 1160px) {
+    height: 350px;
+    flex-basis: 100%;
   }
 `;
 
@@ -81,6 +98,10 @@ export const StyledHeroBox4 = styled.div`
       opacity: 1;
       transform: scale(1.08);
     }
+  }
+  @media only screen and (max-width: 1160px) {
+    height: 350px;
+    flex-basis: 100%;
   }
 `;
 
@@ -104,6 +125,10 @@ export const StyledHeroTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.large};
   font-weight: ${({ theme }) => theme.fontWeights.semiBold};
   transition: color 0.3s ease-in-out;
+  @media only screen and (max-width: 425px) {
+    font-size: ${({ theme }) => theme.fontSizes.xxmedium};
+    left: 20px;
+  }
 `;
 
 export const StyledHeroSubTitle = styled.h2`
@@ -115,6 +140,10 @@ export const StyledHeroSubTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.xmedium};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   transition: color 0.3s ease-in-out;
+  @media only screen and (max-width: 425px) {
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+    left: 20px;
+  }
 `;
 
 export const StyledHeroLink = styled(Link)`
@@ -128,5 +157,8 @@ export const StyledHeroLink = styled(Link)`
 
   &:hover {
     transform: scale(1.1);
+  }
+  @media only screen and (max-width: 425px) {
+    font-size: ${({ theme }) => theme.fontSizes.xxmedium};
   }
 `;

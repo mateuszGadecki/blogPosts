@@ -9,6 +9,9 @@ export const StyledPostDetailsBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 100px 0 0 0;
+  @media only screen and (max-width: 425px) {
+    margin: 60px 0 0 0;
+  }
 `;
 
 export const StyledPostDetailsTitle = styled.h3`
@@ -20,6 +23,9 @@ export const StyledPostDetailsTitle = styled.h3`
   width: 85%;
   text-align: center;
   letter-spacing: 1px;
+  @media only screen and (max-width: 425px) {
+    font-size: ${({ theme }) => theme.fontSizes.xxmedium};
+  }
 `;
 
 export const StyledPostDetailsUser = styled.p`
@@ -27,6 +33,9 @@ export const StyledPostDetailsUser = styled.p`
   color: ${({ theme }) => theme.colors.grey};
   font-size: ${({ theme }) => theme.fontSizes.xmedium};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
+  @media only screen and (max-width: 425px) {
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+  }
 `;
 
 export const StyledPostDetailsText = styled.p`
@@ -37,6 +46,9 @@ export const StyledPostDetailsText = styled.p`
   color: ${({ theme }) => theme.colors.grey};
   font-size: ${({ theme }) => theme.fontSizes.xmedium};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
+  @media only screen and (max-width: 425px) {
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+  }
 `;
 
 export const StyledPostDetailsComments = styled.div`
@@ -88,6 +100,12 @@ export const StyledPostDetailsCommentsList = styled.div`
   animation: ${({ animation }) => handleAnimationType(animation)};
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
+  @media only screen and (max-width: 1024px) {
+    flex-direction: column;
+    gap: 40px 0;
+    margin: 40px 0 0 0;
+    width: fit-content;
+  }
 `;
 
 export const StyledPostDetailsComment = styled.div`
@@ -95,6 +113,10 @@ export const StyledPostDetailsComment = styled.div`
   padding: 0 20px 40px 20px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 20px;
+  @media only screen and (max-width: 425px) {
+    width: 95%;
+    margin: 0 auto;
+  }
 `;
 
 export const StyledDivider = styled.div`
@@ -116,6 +138,14 @@ export const StyledDivider = styled.div`
   }
   &::after {
     margin-left: 70px;
+  }
+  @media only screen and (max-width: 425px) {
+    &::before {
+      margin-right: 30px;
+    }
+    &::after {
+      margin-left: 30px;
+    }
   }
 `;
 
