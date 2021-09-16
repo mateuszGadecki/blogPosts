@@ -22,6 +22,7 @@ const Form = () => {
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <StyledInput
+        data-testid="name-input"
         errorInput={errors.name ? true : false}
         {...register('name', {
           required: 'required',
@@ -29,6 +30,7 @@ const Form = () => {
         placeholder="name"
       />
       <StyledInput
+        data-testid="email-input"
         errorInput={errors.email ? true : false}
         placeholder="email"
         {...register('email', {
@@ -40,13 +42,16 @@ const Form = () => {
         })}
       />
       <StyledTextArea
+        data-testid="message-input"
         errorInput={errors.message ? true : false}
         placeholder="message"
         {...register('message', {
           required: 'required',
         })}
       />
-      <StyledSubmitButton>Submit</StyledSubmitButton>
+      <StyledSubmitButton data-testid="submit-form-button">
+        Submit
+      </StyledSubmitButton>
     </StyledForm>
   );
 };

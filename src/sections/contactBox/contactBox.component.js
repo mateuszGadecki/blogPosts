@@ -9,7 +9,9 @@ const ContactBox = () => {
   return (
     <StyledContactBoxWrapper>
       <StyledContactContent>
-        <StyledContactTitle>Contact Form</StyledContactTitle>
+        <StyledContactTitle data-testid="contact-page-title">
+          Contact Form
+        </StyledContactTitle>
         <Form />
       </StyledContactContent>
     </StyledContactBoxWrapper>
